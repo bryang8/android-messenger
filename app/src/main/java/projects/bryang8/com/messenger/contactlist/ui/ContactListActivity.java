@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import projects.bryang8.com.messenger.R;
 import projects.bryang8.com.messenger.addcontact.ui.AddContactFragment;
+import projects.bryang8.com.messenger.chat.ui.ChatActivity;
 import projects.bryang8.com.messenger.contactlist.ContactListPresenter;
 import projects.bryang8.com.messenger.contactlist.ContactListPresenterImpl;
 import projects.bryang8.com.messenger.contactlist.ui.adapters.ContactListAdapter;
@@ -126,7 +127,10 @@ public class ContactListActivity extends AppCompatActivity implements ContactLis
 
     @Override
     public void onItemClick(User user) {
-        Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(ChatActivity.EMAIL_KEY, user.getEmail());
+        intent.putExtra(ChatActivity.ONLINE_KEY, user.isOnline());
+        startActivity(intent);
     }
 
     @Override
